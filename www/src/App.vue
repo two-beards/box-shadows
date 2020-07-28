@@ -26,9 +26,9 @@
     <section class="sidebar sidebar-right border-l border-gray-300 p-4">
       <h2 class="font-bold text-lg mb-6">Box Properties</h2>
       <BaseInput v-model="backgroundColor" label="Background color" />
-      <BaseInput v-model="borderRadius" label="Border radius" />
-      <BaseInput v-model="boxHeight" label="Height" />
-      <BaseInput v-model="boxWidth" label="Width" />
+      <RangeInput v-model="borderRadius" unit="rem" label="Border radius" min="0" max="100" />
+      <RangeInput v-model="boxHeight" unit="rem" label="Height" min="0" max="100" />
+      <RangeInput v-model="boxWidth" unit="rem" label="Width" min="0" max="100" />
     </section>
     <AppFooter class="footer" />
   </div>
@@ -37,6 +37,7 @@
 <script>
 import AppFooter from './components/AppFooter.vue'
 import BaseInput from './components/BaseInput.vue'
+import RangeInput from './components/RangeInput.vue'
 import ShadowForm from './components/ShadowForm.vue'
 import uuid from './uuid'
 
@@ -45,24 +46,25 @@ export default {
   components: {
     AppFooter,
     BaseInput,
+    RangeInput,
     ShadowForm
   },
   data() {
     return {
       backgroundColor: '#fff',
-      borderRadius: '2rem',
+      borderRadius: 2,
       shadows: [],
-      boxHeight: '20rem',
-      boxWidth: '20rem'
+      boxHeight: 20,
+      boxWidth: 20
     }
   },
   computed: {
     boxStyles() {
-      let styles = `background-color: ${this.backgroundColor}; border-radius: ${this.borderRadius}; height: ${this.boxHeight}; width: ${this.boxWidth}`
+      let styles = `background-color: ${this.backgroundColor}; border-radius: ${this.borderRadius}rem; height: ${this.boxHeight}rem; width: ${this.boxWidth}rem`
       if (this.shadows.length) {
         let shadowStyles = this.shadows.filter(s => s.active).map(s => {
           let style = s.inset ? 'inset ' : ''
-          style += `${s.offsetX} ${s.offsetY} ${s.blur} ${s.spread} ${s.color}`
+          style += `${s.offsetX}px ${s.offsetY}px ${s.blur}px ${s.spread}px ${s.color}`
           return style
         }).join(',')
   
@@ -78,10 +80,10 @@ export default {
         id: uuid(),
         active: true,
         inset: false,
-        offsetX: '0',
-        offsetY: '10px',
-        blur: '15px',
-        spread: '-3px',
+        offsetX: 0,
+        offsetY: 10,
+        blur: 15,
+        spread: -3,
         color: 'rgba(0,0,0,0.1)'
       }
 

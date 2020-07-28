@@ -5,13 +5,14 @@
       v-bind="$attrs"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      class="w-full rounded text-base leading-6 px-2 h-10 placeholder-gray-500 border border-gray-400 hover:border-gray-500 focus:border-blue-400 focus:outline-none focus:shadow-outline" />
+      class="w-full rounded leading-6 px-2 h-10 placeholder-gray-500 border border-gray-400 hover:border-gray-500 focus:border-blue-400 focus:outline-none focus:shadow-outline"
+      :class="inputClass" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'BaseInput',
-  props: ['modelValue', 'label'],
+  props: ['modelValue', 'label', 'inputClass'],
 }
 </script>
