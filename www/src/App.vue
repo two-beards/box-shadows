@@ -25,10 +25,10 @@
     </main>
     <section class="sidebar sidebar-right border-l border-gray-300 p-4">
       <h2 class="font-bold text-lg mb-6">Box Properties</h2>
-      <BaseInput v-model="backgroundColor" label="Background color" />
-      <RangeInput v-model="borderRadius" unit="rem" label="Border radius" min="0" max="100" />
-      <RangeInput v-model="boxHeight" unit="rem" label="Height" min="0" max="100" />
-      <RangeInput v-model="boxWidth" unit="rem" label="Width" min="0" max="100" />
+      <BaseInput v-model="backgroundColor" label="Background color" input-class="text-sm font-mono tracking-wide" />
+      <RangeInput v-model="borderRadius" unit="rem" label="Border radius" min="0" max="50" />
+      <RangeInput v-model="boxHeight" unit="rem" label="Height" min="0" max="50" />
+      <RangeInput v-model="boxWidth" unit="rem" label="Width" min="0" max="50" />
     </section>
     <AppFooter class="footer" />
   </div>
@@ -101,8 +101,10 @@ export default {
       this.shadows = this.shadows.filter(s => s.id !== id)
     }
   },
-  mounted() {
+  created() {
     this.addShadow()
+  },
+  mounted() {
     const { timeZone, locale } = Intl.DateTimeFormat().resolvedOptions()
     fetch('/api/pageview', {
       method: 'POST',
