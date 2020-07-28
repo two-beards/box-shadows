@@ -5,7 +5,12 @@
     </header>
     <section class="sidebar sidebar-left border-r border-gray-300 overflow-hidden">
       <div class="h-full p-4 overflow-auto">
-        <h2 class="font-bold text-lg">Customize Shadows</h2>
+        <div class="flex justify-between items-center">
+          <h2 class="font-bold text-lg">Customize Shadows</h2>
+          <button
+            class="px-3 py-1 text-sm text-blue-600 bg-transparent rounded hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white focus:shadow-outline focus:outline-none"
+            @click="viewShadowCode = true">Show code</button>
+        </div>
         <ShadowForm
           v-for="(shadow, index) in shadows"
           :key="shadow.id"
@@ -14,18 +19,23 @@
           @update="updateShadow"
           @remove="removeShadow" />
         <button
-          class="mt-6 py-2 text-center text-base w-1/2 block mx-auto rounded text-blue-500 focus:outline-none focus:shadow-outline focus:bg-blue-500 focus:text-white hover:bg-blue-500 hover:text-white"
+          class="mt-6 py-2 px-4 text-center text-base block mx-auto rounded text-blue-600 focus:outline-none focus:shadow-outline focus:bg-blue-600 focus:text-white hover:bg-blue-600 hover:text-white"
           @click="addShadow">
           Add a shadow
         </button>
       </div>
     </section>
     <main class="flex justify-center items-center bg-gray-100 p-4">
-      <div :style="boxStyles"></div>
+      <div :style="boxStyles" class="p-4 border"></div>
+      <ShadowModal
+        v-show="viewShadowCode"
+        :shadows="shadows"
+        @close="viewShadowCode = false" />
     </main>
     <section class="sidebar sidebar-right border-l border-gray-300 p-4">
       <h2 class="font-bold text-lg mb-6">Box Properties</h2>
       <BaseInput v-model="backgroundColor" label="Background color" input-class="text-sm font-mono tracking-wide" />
+      <BaseInput v-model="borderColor" label="Border color" input-class="text-sm font-mono tracking-wide" />
       <RangeInput v-model="borderRadius" unit="rem" label="Border radius" min="0" max="50" />
       <RangeInput v-model="boxHeight" unit="rem" label="Height" min="0" max="50" />
       <RangeInput v-model="boxWidth" unit="rem" label="Width" min="0" max="50" />
@@ -39,7 +49,9 @@ import AppFooter from './components/AppFooter.vue'
 import BaseInput from './components/BaseInput.vue'
 import RangeInput from './components/RangeInput.vue'
 import ShadowForm from './components/ShadowForm.vue'
+import ShadowModal from './components/ShadowModal.vue'
 import uuid from './uuid'
+import getShadowStyles from './getShadowStyles'
 
 export default {
   name: 'App',
@@ -47,28 +59,25 @@ export default {
     AppFooter,
     BaseInput,
     RangeInput,
-    ShadowForm
+    ShadowForm,
+    ShadowModal
   },
   data() {
     return {
       backgroundColor: '#fff',
       borderRadius: 2,
+      borderColor: 'transparent',
       shadows: [],
       boxHeight: 20,
-      boxWidth: 20
+      boxWidth: 20,
+      viewShadowCode: false
     }
   },
   computed: {
     boxStyles() {
-      let styles = `background-color: ${this.backgroundColor}; border-radius: ${this.borderRadius}rem; height: ${this.boxHeight}rem; width: ${this.boxWidth}rem`
+      let styles = `background-color: ${this.backgroundColor}; border-color: ${this.borderColor}; border-radius: ${this.borderRadius}rem; height: ${this.boxHeight}rem; width: ${this.boxWidth}rem;`
       if (this.shadows.length) {
-        let shadowStyles = this.shadows.filter(s => s.active).map(s => {
-          let style = s.inset ? 'inset ' : ''
-          style += `${s.offsetX}px ${s.offsetY}px ${s.blur}px ${s.spread}px ${s.color}`
-          return style
-        }).join(',')
-  
-        styles += `; box-shadow: ${shadowStyles}`
+        styles += getShadowStyles(this.shadows)
       }
 
       return styles
