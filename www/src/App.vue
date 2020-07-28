@@ -36,7 +36,7 @@
       <h2 class="font-bold text-lg mb-6">Box Properties</h2>
       <BaseInput v-model="backgroundColor" label="Background color" input-class="text-sm font-mono tracking-wide" />
       <BaseInput v-model="borderColor" label="Border color" input-class="text-sm font-mono tracking-wide" />
-      <RangeInput v-model="borderRadius" unit="rem" label="Border radius" min="0" max="50" />
+      <RangeInput v-model="borderRadius" unit="rem" label="Border radius" min="0" max="25" />
       <RangeInput v-model="boxHeight" unit="rem" label="Height" min="0" max="50" />
       <RangeInput v-model="boxWidth" unit="rem" label="Width" min="0" max="50" />
     </section>
