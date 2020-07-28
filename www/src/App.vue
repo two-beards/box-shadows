@@ -102,6 +102,7 @@ export default {
     }
   },
   mounted() {
+    this.addShadow()
     const { timeZone, locale } = Intl.DateTimeFormat().resolvedOptions()
     fetch('/api/pageview', {
       method: 'POST',
