@@ -50,7 +50,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .modal {
   width: 50vw;
