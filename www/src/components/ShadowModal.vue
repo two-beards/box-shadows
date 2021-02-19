@@ -3,7 +3,7 @@
     <button class="absolute z-10 inset-0 h-screen w-screen bg-gray-800 opacity-25 focus:outline-none" @click="close"></button>
     <div class="modal bg-white rounded-lg shadow-lg px-12 py-8 z-20 flex flex-col">
       <h2 class="text-2xl font-bold">Generated styles</h2>
-      <pre class="mt-6 flex-1 bg-gray-100 rounded p-6 text-lg font-mono leading-normal">{{ shadowCode }}</pre>
+      <pre class="mt-6 flex-1 bg-gray-100 rounded p-6 text-lg font-mono leading-normal overflow-auto">{{ shadowCode }}</pre>
       <footer class="pt-4 flex justify-end">
         <button
           @click="close"
