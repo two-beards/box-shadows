@@ -11,15 +11,17 @@
             class="px-3 py-1 text-sm text-blue-600 bg-transparent rounded hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white focus:shadow-outline focus:outline-none"
             @click="viewShadowCode = true">Show code</button>
         </div>
-        <ShadowForm
-          v-for="(shadow, index) in shadows"
-          :key="shadow.id"
-          :label="`Shadow ${index + 1}`"
-          :shadow="shadow"
-          @update="updateShadow"
-          @remove="removeShadow" />
+        <section class="divide-y divide-gray-300 -mx-4 -mt-6">
+            <ShadowForm
+                v-for="(shadow, index) in shadows"
+                :key="shadow.id"
+                :label="`Shadow ${index + 1}`"
+                :shadow="shadow"
+                @update="updateShadow"
+                @remove="removeShadow" />
+        </section>
         <button
-          class="mt-6 py-2 px-4 text-center text-base block mx-auto rounded text-blue-600 focus:outline-none focus:shadow-outline focus:bg-blue-600 focus:text-white hover:bg-blue-600 hover:text-white"
+          class="my-8 py-2 px-4 text-center text-base block mx-auto rounded bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-blue-500 text-white"
           @click="addShadow">
           Add a shadow
         </button>

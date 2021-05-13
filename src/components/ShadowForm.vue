@@ -1,16 +1,15 @@
 <template>
-  <div class="mt-6">
-    <div class="flex items-center uppercase text-sm font-semibold mb-4">
+  <div class="px-4 mt-6 pt-6">
+    <div class="flex items-center text-base font-bold mb-4">
       <span class="inline-block mr-2">{{ label }}</span>
-      <span class="inline-block flex-1 h-px border-b border-gray-400"></span>
     </div>
     <div class="flex items-center mb-4">
-      <label class="mr-6">
-        <input type="checkbox" v-model="localShadow.active" /> Active
+      <label class="mr-6 flex items-center h-5">
+        <input type="checkbox" class="focus:ring-blue-600 h-4 w-4 text-blue-600 border-gray-300 rounded mr-2" v-model="localShadow.active" /> Active
       </label>
 
-      <label>
-        <input type="checkbox" v-model="localShadow.inset" /> Inset
+      <label class="flex items-center h-5">
+        <input type="checkbox" class="focus:ring-blue-600 h-4 w-4 text-blue-600 border-gray-300 rounded mr-2" v-model="localShadow.inset" /> Inset
       </label>
 
       <button

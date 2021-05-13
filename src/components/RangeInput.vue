@@ -29,7 +29,7 @@ export default {
 /* generated using https://danielstern.ca/range.css */
 input[type=range] {
   --track-bg: #e2e8f0;
-  --thumb-bg: #3182ce;
+  --thumb-bg: #2563eb;
   width: 100%;
   margin: 5.95px 0;
   background-color: transparent;
