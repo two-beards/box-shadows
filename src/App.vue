@@ -1,7 +1,15 @@
 <template>
   <div class="grid layout h-screen">
-    <header class="border-b border-gray-300 py-4 text-xl px-6 font-semibold">
-      Box Shadows
+    <header class="border-b border-gray-300 py-4 text-xl px-6 font-semibold flex items-center justify-between">
+      <span>Box Shadows</span>
+      <a
+        href="https://github.com/two-beards/box-shadows/"
+        target="_blank"
+        rel="noreferrer noopener"
+        title="View on GitHub"
+        class="no-underline rounded text-gray-500 hover:text-gray-900 inline-block mr-4 w-6 h-6 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-blue-600 focus:ring-opacity-40">
+        <GitHubIcon />
+      </a>
     </header>
     <section class="sidebar sidebar-left border-r border-gray-300 overflow-hidden">
       <div class="h-full p-4 overflow-auto">
@@ -54,6 +62,7 @@ import ShadowForm from './components/ShadowForm.vue'
 import ShadowModal from './components/ShadowModal.vue'
 import uuid from './uuid'
 import getShadowStyles from './getShadowStyles'
+import GitHubIcon from './components/icons/GitHub.vue'
 
 export default {
   name: 'App',
@@ -62,7 +71,8 @@ export default {
     BaseInput,
     RangeInput,
     ShadowForm,
-    ShadowModal
+    ShadowModal,
+    GitHubIcon,
   },
   data() {
     return {
