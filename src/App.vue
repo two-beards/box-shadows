@@ -2,24 +2,30 @@
   <div class="grid layout h-screen">
     <header class="border-b border-gray-300 py-4 text-xl px-6 font-semibold flex items-center justify-between">
       <span>Box Shadows</span>
-      <a
-        href="https://github.com/two-beards/box-shadows/"
-        target="_blank"
-        rel="noreferrer noopener"
-        title="View on GitHub"
-        class="no-underline rounded text-gray-500 hover:text-gray-900 inline-block mr-4 w-6 h-6 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-blue-600 focus:ring-opacity-40">
-        <GitHubIcon />
-      </a>
+      <div class="flex items-center">
+        <a
+            href="https://github.com/two-beards/box-shadows/"
+            target="_blank"
+            rel="noreferrer noopener"
+            title="View on GitHub"
+            class="no-underline rounded text-gray-500 hover:text-gray-900 inline-block mr-4 w-6 h-6 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-blue-600 focus:ring-opacity-40">
+            <GitHubIcon />
+        </a>
+        <button
+        class="ml-4 px-3 py-1 text-base text-white bg-blue-600 rounded focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:outline-none"
+            @click="viewShadowCode = true">Show code</button>
+      </div>
     </header>
     <section class="sidebar sidebar-left border-r border-gray-300 overflow-hidden">
-      <div class="h-full p-4 overflow-auto">
-        <div class="flex justify-between items-center">
-          <h2 class="font-bold text-lg">Customize Shadows</h2>
-          <button
-            class="px-3 py-1 text-sm text-blue-600 bg-transparent rounded hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white focus:shadow-outline focus:outline-none"
-            @click="viewShadowCode = true">Show code</button>
-        </div>
-        <section class="divide-y divide-gray-300 -mx-4 -mt-6">
+      <div class="h-full overflow-auto">
+          <div class="flex items-center justify-between p-4">
+                <h2 class="font-bold text-lg">Customize Shadows</h2>
+                <button
+                  class="py-1 px-3 text-center text-sm rounded bg-blue-600 focus:outline-none focus:ring-4 focus:ring-offset-2 hover:bg-blue-700 text-white"
+                  @click="addShadow">
+                  Add a shadow
+                </button>
+          </div>
             <ShadowForm
                 v-for="(shadow, index) in shadows"
                 :key="shadow.id"
@@ -27,18 +33,12 @@
                 :shadow="shadow"
                 @update="updateShadow"
                 @remove="removeShadow" />
-        </section>
-        <button
-          class="my-8 py-2 px-4 text-center text-base block mx-auto rounded bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-blue-500 text-white"
-          @click="addShadow">
-          Add a shadow
-        </button>
       </div>
     </section>
     <main class="flex justify-center items-center bg-gray-100 p-4">
       <div :style="boxStyles" class="p-4 border"></div>
       <ShadowModal
-        v-show="viewShadowCode"
+        :isOpen="viewShadowCode"
         :shadows="shadows"
         @close="viewShadowCode = false" />
     </main>
