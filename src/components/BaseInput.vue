@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4">
-    <label class="block text-sm font-medium text-gray-700" :for="fieldName">{{ label }}</label>
+    <label class="block text-sm font-semibold text-gray-900" :for="fieldName">{{ label }}</label>
     <div class="mt-1">
         <input
             v-bind="$attrs"
