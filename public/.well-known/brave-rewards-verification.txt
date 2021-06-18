@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: box-shadow.dev
+Token: 7cc919ba6aaee9e3079fdffef236a77cd48006d51354a197dcb1c8038b6a3af2
