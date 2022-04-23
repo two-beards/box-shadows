@@ -1,18 +1,20 @@
 <template>
-  <div class="mb-4 relative range">
+  <div class="mb-4">
     <div class="flex justify-between items-center mb-2">
       <label class="text-sm font-semibold block">{{ label }}</label>
       <div class="flex gap-1 items-center"><BaseInput v-model="modelValue" type="number" input-class="!w-14 text-center" wrapper-class="!mb-0" />{{unit}}</div>
     </div>
-    <input
-      type="range"
-      v-bind="$attrs"
-      :max="max"
-      :min="min"
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      class="focus:outline-none"
-      :list="id" />
+    <div class="relative range z-0">
+      <input
+        type="range"
+        v-bind="$attrs"
+        :max="max"
+        :min="min"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+        class="focus:outline-none"
+        :list="id" />
+    </div>
       <datalist :id="id">
         <option>{{ middle }}</option>
       </datalist>
@@ -53,15 +55,15 @@ export default {
 
 <style scoped>
 /* generated using https://danielstern.ca/range.css */
-input[type=range] {
+.range {
   --track-bg: theme('colors.gray.200');
   --thumb-bg: theme('colors.blue.600');
+}
+input[type=range] {
   width: 100%;
-  margin: 5.95px 0;
+  margin: 6px 0;
   background-color: transparent;
   -webkit-appearance: none;
-  position: relative;
-  z-index: 0;
 }
 input[type=range]:focus {
   outline: none;
@@ -150,9 +152,10 @@ how to remove the virtical space around the range input in IE*/
 .range::after {
   background: var(--track-bg);
   content: '';
-  position: absolute;
   height: 1.5rem;
   left: calc(50% - 1px);
+  position: absolute;
+  top: 0.3125rem;
   width: 2px;
   z-index: -1;
 }
