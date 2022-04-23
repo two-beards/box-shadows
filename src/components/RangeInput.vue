@@ -2,38 +2,66 @@
   <div class="mb-4">
     <div class="flex justify-between items-center mb-2">
       <label class="text-sm font-semibold block">{{ label }}</label>
-      <span class="text-sm">{{ displayValue }}</span>
+      <div class="flex gap-1 items-center"><BaseInput v-model="modelValue" type="number" input-class="!w-14 text-center" wrapper-class="!mb-0" />{{unit}}</div>
     </div>
     <input
       type="range"
       v-bind="$attrs"
+      :max="max"
+      :min="min"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      class="focus:outline-none" />
+      class="focus:outline-none"
+      :list="id" />
+      <datalist :id="id">
+        <option>{{ middle }}</option>
+      </datalist>
   </div>
 </template>
 
 <script>
+import BaseInput from "./BaseInput.vue"
+import uuid from "../uuid"
+
 export default {
-  name: 'RangeInput',
-  props: ['modelValue', 'label', 'unit'],
-  computed: {
-    displayValue() {
-      return `${this.modelValue}${this.unit}`
+    name: "RangeInput",
+    props: ["modelValue", "label", "unit", "min", "max"],
+    components: { BaseInput },
+    data() {
+        return {
+            id: null
+        }
+    },
+    computed: {
+        displayValue() {
+            return `${this.modelValue}${this.unit}`;
+        },
+        rangeMin() {
+          return parseInt(this.min)},
+        rangeMax() {
+          return parseInt(this.max)
+        },
+        middle() {
+            return (this.rangeMax + this.rangeMin) / 2;
+        },
+    },
+    created() {
+      this.id = uuid()
     }
-  },
 }
 </script>
 
 <style scoped>
 /* generated using https://danielstern.ca/range.css */
 input[type=range] {
-  --track-bg: #e2e8f0;
-  --thumb-bg: #2563eb;
+  --track-bg: theme('colors.gray.200');
+  --thumb-bg: theme('colors.blue.600');
   width: 100%;
   margin: 5.95px 0;
   background-color: transparent;
   -webkit-appearance: none;
+  position: relative;
+  z-index: 0;
 }
 input[type=range]:focus {
   outline: none;
@@ -119,5 +147,13 @@ how to remove the virtical space around the range input in IE*/
     /*Edge starts the margin from the thumb, not the track as other browsers do*/
   }
 }
-
+input[type=range]::after {
+  background: var(--track-bg);
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: calc(50% - 1px);
+  width: 2px;
+  z-index: -1;
+}
 </style>
