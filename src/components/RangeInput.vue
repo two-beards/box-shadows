@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4">
+  <div class="mb-4 relative range">
     <div class="flex justify-between items-center mb-2">
       <label class="text-sm font-semibold block">{{ label }}</label>
       <div class="flex gap-1 items-center"><BaseInput v-model="modelValue" type="number" input-class="!w-14 text-center" wrapper-class="!mb-0" />{{unit}}</div>
@@ -147,11 +147,11 @@ how to remove the virtical space around the range input in IE*/
     /*Edge starts the margin from the thumb, not the track as other browsers do*/
   }
 }
-input[type=range]::after {
+.range::after {
   background: var(--track-bg);
   content: '';
   position: absolute;
-  height: 100%;
+  height: 1.5rem;
   left: calc(50% - 1px);
   width: 2px;
   z-index: -1;
