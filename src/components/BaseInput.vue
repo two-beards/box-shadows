@@ -1,7 +1,7 @@
 <template>
-  <div class="mb-4">
-    <label class="block text-sm font-semibold text-gray-900" :for="fieldName">{{ label }}</label>
-    <div class="mt-1">
+  <div class="mb-4" :class="wrapperClass">
+    <label v-if="label" class="block text-sm font-semibold text-gray-900 mb-1" :for="fieldName">{{ label }}</label>
+    <div>
         <input
             v-bind="$attrs"
             :name="fieldName"
@@ -17,11 +17,27 @@
 <script>
 export default {
   name: 'BaseInput',
-  props: ['modelValue', 'label', 'inputClass'],
+  props: ['modelValue', 'label', 'inputClass', 'wrapperClass'],
+  inheritAttrs: false,
   computed: {
       fieldName() {
+        if (this.label) {
           return this.label.toLowerCase().split(' ').join('-')
+        }
       }
   },
 }
 </script>
+
+<style scoped>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+</style>
