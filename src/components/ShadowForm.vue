@@ -84,7 +84,7 @@
 <script>
 import BaseInput from "./BaseInput.vue";
 import RangeInput from "./RangeInput.vue";
-import klona from "klona";
+import { klona } from "klona/json";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import ChevronIcon from "./icons/Chevron.vue";
 
