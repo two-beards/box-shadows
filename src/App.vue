@@ -45,7 +45,10 @@
                 />
             </div>
         </section>
-        <main class="flex justify-center items-center bg-gray-100 p-4">
+        <main
+            class="flex justify-center items-center bg-gray-100 p-4"
+            :style="mainStyles"
+        >
             <div :style="boxStyles" class="p-4 border"></div>
             <ShadowModal
                 :isOpen="viewShadowCode"
@@ -55,6 +58,11 @@
         </main>
         <section class="sidebar sidebar-right border-l border-gray-300 p-4">
             <h2 class="font-bold text-lg mb-6">Box Properties</h2>
+            <BaseInput
+                v-model="canvasColor"
+                label="Canvas color"
+                input-class="text-sm font-mono tracking-wide"
+            />
             <BaseInput
                 v-model="backgroundColor"
                 label="Background color"
@@ -114,6 +122,7 @@ export default {
     data() {
         return {
             backgroundColor: '#fff',
+            canvasColor: '#fff',
             borderRadius: 2,
             borderColor: 'transparent',
             shadows: [],
@@ -130,6 +139,9 @@ export default {
             }
 
             return styles
+        },
+        mainStyles() {
+            return `background-color: ${this.canvasColor};`
         },
     },
     methods: {
