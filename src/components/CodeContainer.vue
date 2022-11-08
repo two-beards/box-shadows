@@ -3,7 +3,7 @@
       class="p-4 mb-6 font-mono text-gray-800 bg-gray-50 border border-gray-200 rounded-md overflow-x-scroll relative flex items-center"
     ><code class="flex-1" :class="languageClass">{{ content }}</code>
         <span v-if="showCopiedText" class="bg-gray-50 px-4 font-semibold text-emerald-500 text-sm font-sans absolute right-0">Copied!</span>
-        <button v-else @click="copyToClipboard" title="Copy to clipboard" class="bg-gray-50 text-gray-400 hover:text-gray-800 p-2 focus:outline-none focus:ring focus:ring-blue-600 rounded absolute right-1 inline-flex">
+        <button v-else @click="copyToClipboard" title="Copy to clipboard" class="bg-gray-50 text-gray-500 hover:text-blue-600 p-2 focus:outline-none focus:ring focus:ring-blue-600 rounded absolute right-1 inline-flex">
           <ClipboardIcon class="h-5 w-5" />
         </button
         ></pre>
