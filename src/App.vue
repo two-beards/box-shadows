@@ -122,7 +122,7 @@ export default {
     data() {
         return {
             backgroundColor: '#fff',
-            canvasColor: '#fff',
+            canvasColor: '#f3f4f6',
             borderRadius: 2,
             borderColor: 'transparent',
             shadows: [],
