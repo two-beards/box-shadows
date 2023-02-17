@@ -4,6 +4,7 @@
             <label class="text-sm font-semibold block">{{ label }}</label>
             <div class="flex gap-1 items-center">
                 <BaseInput
+                    v-bind="$attrs"
                     v-model="modelValue"
                     type="number"
                     input-class="!w-14 text-center"
